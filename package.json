@@ -1,0 +1,75 @@
+{
+  "name": "pixel-pet",
+  "productName": "PixelPet",
+  "version": "0.5.0-beta",
+  "description": "Compagnon de bureau rétro en pixel art (Chat, Chien, etc.) avec réactions IA et santé",
+  "main": "src/main/index.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "build:mac": "electron-builder --mac",
+    "build:win": "electron-builder --win -c.npmRebuild=false",
+    "build:linux": "electron-builder --linux"
+  },
+  "keywords": [
+    "desktop-pet",
+    "pixel-art",
+    "comnyang",
+    "ai-agent",
+    "pomodoro",
+    "cat",
+    "dog"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "uiohook-napi": "^1.5.5"
+  },
+  "devDependencies": {
+    "electron": "^44.5.1",
+    "electron-builder": "^26.7.0"
+  },
+  "build": {
+    "appId": "com.pixelpet.desktop",
+    "productName": "PixelPet",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "assets/**/*",
+      "svg/**/*"
+    ],
+    "mac": {
+      "icon": "assets/comnyang-logo.icns",
+      "category": "public.app-category.entertainment",
+      "hardenedRuntime": false,
+      "extendInfo": {
+        "NSAppleEventsUsageDescription": "PixelPet requires accessibility access to animate the pet when you type or scroll.",
+        "NSSystemAdministrationUsageDescription": "PixelPet requires accessibility access to detect global typing and scrolling."
+      },
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    },
+    "win": {
+      "icon": "assets/comnyang-logo.ico",
+      "target": [
+        {
+          "target": "zip",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Utility"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+/**
+ * Reset & Base Window Styles
+ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-drag: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: transparent !important;
+  position: relative;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+#viewport {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Drag Handle */
+#drag-handle {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  width: 200px;
+  height: 200px;
+  z-index: 50;
+  cursor: grab;
+}
+
+#drag-handle:active {
+  cursor: grabbing;
+}

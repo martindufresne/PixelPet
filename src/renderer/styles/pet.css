@@ -1,0 +1,133 @@
+/**
+ * Pet Sprite & Animation Styles
+ */
+.pet-container {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  top: 90px;
+  left: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition: transform 0.12s ease-out;
+}
+
+.pet-svg {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  top: 0;
+  left: 0;
+  display: none;
+  shape-rendering: crispEdges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* Pose selection */
+body[data-pose="idle"] #pet-idle,
+body[data-pose="press-left"] #pet-press-left,
+body[data-pose="press-right"] #pet-press-right,
+body[data-pose="scroll-unroll"] #pet-scroll-unroll,
+body[data-pose="jump-start"] #pet-jump-start,
+body[data-pose="jump-ing"] #pet-jump-ing,
+body[data-pose="stretch-default"] #pet-stretch-default,
+body[data-pose="stretch-ing"] #pet-stretch-ing,
+body[data-pose="stretch-end"] #pet-stretch-end {
+  display: block;
+}
+
+/* Default fallback */
+body:not([data-pose]) #pet-idle {
+  display: block;
+}
+
+/* Jump translation */
+body[data-pose="jump-ing"] .pet-container {
+  transform: translateY(-24px);
+}
+
+body[data-pose="jump-start"] .pet-container {
+  transform: translateY(-6px);
+}
+
+/* Mochi Drag Stretch */
+body.dragging .pet-container {
+  transform-origin: bottom center;
+  transform: scaleY(var(--stretch-y, 1.25)) scaleX(var(--stretch-x, 0.88));
+}
+
+/* Floating Purr Hearts */
+#purr-hearts {
+  position: absolute;
+  top: 50px;
+  left: 120px;
+  width: 80px;
+  height: 50px;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 60;
+  transition: opacity 0.2s ease;
+}
+
+body.purring #purr-hearts {
+  opacity: 1;
+}
+
+.heart-particle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #ff3366;
+  clip-path: polygon(
+    20% 0%, 40% 0%, 50% 20%, 60% 0%, 80% 0%, 
+    100% 20%, 100% 40%, 50% 100%, 0% 40%, 0% 20%
+  );
+  animation: float-heart 1.4s infinite ease-out;
+}
+
+.heart-particle:nth-child(1) { left: 10px; animation-delay: 0s; }
+.heart-particle:nth-child(2) { left: 35px; animation-delay: 0.4s; }
+.heart-particle:nth-child(3) { left: 55px; animation-delay: 0.8s; }
+
+@keyframes float-heart {
+  0% { transform: translateY(20px) scale(0.6); opacity: 0; }
+  30% { opacity: 1; transform: translateY(5px) scale(1); }
+  100% { transform: translateY(-30px) scale(1.2); opacity: 0; }
+}
+
+/* Sleeping Zzz */
+#sleep-zzz {
+  position: absolute;
+  top: 60px;
+  left: 170px;
+  width: 60px;
+  height: 60px;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 60;
+}
+
+body.sleeping #sleep-zzz {
+  opacity: 1;
+}
+
+.zzz-letter {
+  position: absolute;
+  font-weight: 900;
+  font-family: monospace;
+  color: #4a90e2;
+  animation: float-zzz 2.5s infinite ease-out;
+}
+
+.zzz-letter:nth-child(1) { font-size: 14px; left: 0px; animation-delay: 0s; }
+.zzz-letter:nth-child(2) { font-size: 18px; left: 15px; animation-delay: 0.8s; }
+.zzz-letter:nth-child(3) { font-size: 24px; left: 30px; animation-delay: 1.6s; }
+
+@keyframes float-zzz {
+  0% { transform: translate(0, 15px) scale(0.7); opacity: 0; }
+  40% { opacity: 1; }
+  100% { transform: translate(15px, -30px) scale(1.1); opacity: 0; }
+}
